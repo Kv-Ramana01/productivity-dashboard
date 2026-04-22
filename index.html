@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <h2 class="logo">FocusFlow</h2>
+        <nav>
+          <ul>
+            <li>Dashboard</li>
+            <li>Tasks</li>
+            <li>Notes</li>
+            <li>Calendar</li>
+            <li>Weather</li>
+            <li>Quotes</li>
+            <li>Settings</li>
+          </ul>
+        </nav>
+        <button>toggle dark mode button</button>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div class="left-header">
+            <button class="menu-btn">☰</button>
+            <input type="text" placeholder="Search anything..." />
+          </div>
+
+          <div class="right-header">
+            <button class="theme-btn">🌙</button>
+            <div class="profile">KV</div>
+          </div>
+        </header>
+        <section class="top-cards">
+          <div class="card">Tasks</div>
+          <div class="card">Clock</div>
+          <div class="card">Weather</div>
+          <div class="card">Quote</div>
+        </section>
+
+        <section class="bottom-cards">
+          <div class="card todo big">
+            <h3>My Tasks</h3>
+
+            <div class="todo-input">
+              <input
+                type="text"
+                id="taskInput"
+                placeholder="Add a new task..."
+              />
+              <button id="addTaskBtn">Add</button>
+            </div>
+
+            <ul id="taskList"></ul>
+          </div>
+          <div class="card big">Notes</div>
+          <div class="card big">Weather Details</div>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
