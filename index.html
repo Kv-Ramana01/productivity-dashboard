@@ -21,7 +21,14 @@
             <li>Settings</li>
           </ul>
         </nav>
-        <button>toggle dark mode button</button>
+        <div class="theme-toggle">
+          <span>Dark Mode 🌙</span>
+
+          <label class="switch">
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
       </aside>
       <main>
         <header class="topbar">
@@ -35,9 +42,18 @@
             <div class="profile">KV</div>
           </div>
         </header>
+        <section class="headline">
+          <h1>Welcome Back, Ramana</h1>
+          <h3>Stay focused and keep going!</h3>
+        </section>
         <section class="top-cards">
           <div class="card">Tasks</div>
-          <div class="card">Clock</div>
+          <div class="card">
+            <h3>Clock</h3>
+            <p id="clockTime">00:00:00</p>
+            <p id="clockPeriod">AM</p>
+            <p id="clockDate"></p>
+          </div>
           <div class="card">Weather</div>
           <div class="card">Quote</div>
         </section>
