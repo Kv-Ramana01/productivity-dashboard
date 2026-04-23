@@ -73,10 +73,29 @@
 
             <ul id="taskList"></ul>
           </div>
-          <div class="card big">Notes</div>
+          <div class="card big notes-card">
+            <h3>Notes</h3>
+            <div id="notesList"></div>
+
+            <button id="openNoteModal">+ Add Note</button>
+          </div>
           <div class="card big">Weather Details</div>
         </section>
       </main>
+    </div>
+    <div class="modal-overlay" id="noteModal">
+      <div class="modal-box">
+        <h3>Create Note</h3>
+
+        <input type="text" id="noteTitle" placeholder="Note title..." />
+
+        <textarea id="noteBody" placeholder="Write your note..."></textarea>
+
+        <div class="modal-actions">
+          <button id="saveNoteBtn">Save</button>
+          <button id="closeNoteModal">Cancel</button>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

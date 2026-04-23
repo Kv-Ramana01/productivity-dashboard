@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+
+
 body {
     font-family: Arial, sans-serif;
     background: #0f172a;
@@ -12,10 +14,11 @@ body {
 
 .container{
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 aside {
+  height: 100vh;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -39,10 +42,21 @@ aside li {
     cursor: pointer;
 }
 
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Prevents the 'global' scrollbar */
+}
+
 main {
     flex: 1;
     padding: 20px;
+    height: 100vh;      /* Matches container */
+    overflow-y: auto;
+    scrollbar-width: none;
 }
+
+
 
 .top-cards {
   display: grid;
@@ -70,13 +84,18 @@ main {
 
 
 .topbar{
+  position: sticky;
+  top: 0;
+  z-index: 100;
     height: 70px;
     background: #111827;
     display: flex;
     justify-content:space-between;
     align-items: center;
     border-radius: 8px;
+    border: 2px solid #1e293b;
     padding: 0 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
 }
 
 .left-header,
@@ -150,13 +169,15 @@ section {
 #taskList{
   background: #1a2336;
   border-radius: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 1px solid #2c3447;
 
 }
 
 #taskList {
   list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
 }
 
 #taskList li {
@@ -329,4 +350,195 @@ input,
 li,
 .slider {
   transition: 0.25s ease;
+}
+
+
+
+#taskList,
+#notesList {
+  max-height: 280px;
+  overflow-y: auto;
+
+  scrollbar-width: none;      /* Firefox */
+}
+
+
+#taskList::-webkit-scrollbar,
+#notesList::-webkit-scrollbar {
+  display: none;              /* Chrome, Edge, Safari */
+}
+/* 
+#taskList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#taskList::-webkit-scrollbar-thumb {
+  background: #065cd4e0;
+  border-radius: 10px;
+} */
+
+#openNoteModal {
+  margin-top: 15px;
+}
+
+#openNoteModal,
+#saveNoteBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+#notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.notes-card {
+  display: flex;
+  flex-direction: column;
+}
+
+#notesList {
+  flex: 1;
+}
+
+#notesList::-webkit-scrollbar {
+  display: none;
+}
+
+.note-card {
+  background: #111827;
+  padding: 14px;
+  border-radius: 10px;
+
+}
+
+.note-card h4 {
+  margin-bottom: 8px;
+  color: #3b82f6;
+}
+
+.note-card p {
+  font-size: 14px;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.note-delete {
+  display: flex;
+  margin-left: auto;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+
+/* modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  background: rgba(0,0,0,0.55);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  width: 420px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+
+.modal-box input,
+.modal-box textarea {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: #111827;
+  color: white;
+}
+
+.modal-box textarea {
+  min-height: 140px;
+  scrollbar-width: none;
+  resize: none;
+}
+
+.modal-box textarea::-webkit-scrollbar{
+  display: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+#closeNoteModal {
+  background: #374151;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+body.light-mode .note-card,
+body.light-mode .modal-box,
+body.light-mode .modal-box input,
+body.light-mode .modal-box textarea,
+body.light-mode #notesList,
+body.light-mode .notes-card {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+body.light-mode .note-card p {
+  color: #4b5563;
+}
+
+body.light-mode .note-card h4 {
+  color: #2563eb;
+}
+
+body.light-mode #closeNoteModal {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+body.light-mode .modal-overlay {
+  background: rgba(0,0,0,0.25);
+}
+
+body.light-mode #openNoteModal,
+body.light-mode #saveNoteBtn {
+  color: white;
 }

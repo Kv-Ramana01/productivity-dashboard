@@ -8,6 +8,81 @@ const clockPeriod = document.querySelector("#clockPeriod");
 
 const themeToggle = document.querySelector("#themeToggle");
 
+
+const noteModal = document.querySelector("#noteModal");
+const openNoteModal = document.querySelector("#openNoteModal");
+const closeNoteModal = document.querySelector("#closeNoteModal");
+const saveNoteBtn = document.querySelector("#saveNoteBtn");
+
+const noteTitle = document.querySelector("#noteTitle");
+const noteBody = document.querySelector("#noteBody");
+const notesList = document.querySelector("#notesList");
+
+const themeBtn = document.querySelector(".theme-btn");
+
+themeBtn.addEventListener("click", () => {
+  themeToggle.checked = !themeToggle.checked;
+  themeToggle.dispatchEvent(new Event("change"));
+});
+
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+renderNotes();
+
+openNoteModal.addEventListener("click" , () => {
+  noteModal.classList.add("show");
+});
+
+closeNoteModal.addEventListener("click", () => {
+  noteModal.classList.remove("show");
+})
+
+saveNoteBtn.addEventListener("click", addNote);
+
+function addNote() {
+  const title = noteTitle.value.trim();
+  const body = noteBody.value.trim();
+
+  if(title === "" || body === "") return;
+
+  notes.push({title,body});
+
+  saveNotes();
+  renderNotes();
+
+  noteTitle.value = "";
+  noteBody.value = "";
+
+  noteModal.classList.remove("show");
+}
+
+
+function renderNotes() {
+  notesList.innerHTML = "";
+  
+  notes.forEach((note,index) => {
+    const card = document.createElement("div");
+    card.classList.add("note-card");
+
+    card.innerHTML = `
+      <h4>${note.title}</h4>
+      <p>${note.body}</p>
+      <button class="note-delete">Delete</button>
+    `;
+
+    card.querySelector(".note-delete").addEventListener("click", ()=>{
+      notes.splice(index,1);
+      saveNotes();
+      renderNotes();
+    });
+    
+    notesList.appendChild(card);
+  });
+}
+function saveNotes () {
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const savedTheme = localStorage.getItem("theme");
 
@@ -92,7 +167,7 @@ function updateClock(){
   // clockTime.textContent = now.toLocaleTimeString();
   // clockDate.textContent = now.toLocaleDateString();
 
-  clockDate.textContent = now.toLocaleDateString("en-GB", {
+  clockDate.textContent = now.toLocaleDateString("ja-JP", {
     weekday: "long",
     day:"numeric",
     month:"long",
