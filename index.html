@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <aside>
+      <aside id="sidebar">
         <h2 class="logo">FocusFlow</h2>
         <nav>
           <ul>
@@ -33,7 +33,7 @@
       <main>
         <header class="topbar">
           <div class="left-header">
-            <button class="menu-btn">☰</button>
+            <button class="menu-btn" id="menuBtn">☰</button>
             <input type="text" placeholder="Search anything..." />
           </div>
 
@@ -47,14 +47,61 @@
           <h3>Stay focused and keep going!</h3>
         </section>
         <section class="top-cards">
-          <div class="card">Tasks</div>
+          <div class="card progress-card">
+            <h3>📝 Tasks Today</h3>
+
+            <div class="progress-content">
+              <div class="circle">
+                <div class="inner-circle"></div>
+              </div>
+
+              <div class="progress-text">
+                <p id="doneCount">0</p>
+                <span id="doneTotal">of 0 done</span>
+              </div>
+            </div>
+
+            <p class="motivation" id="taskMessage">
+              Keep it up! You're doing great.
+            </p>
+          </div>
           <div class="card">
             <h3>Clock</h3>
             <p id="clockTime">00:00:00</p>
             <p id="clockPeriod">AM</p>
             <p id="clockDate"></p>
           </div>
-          <div class="card">Weather</div>
+          <div class="card weather-card">
+            <h3>🌤 Weather</h3>
+
+            <p id="cityName">Loading...</p>
+
+            <div class="weather-main">
+              <img id="weatherIcon" />
+
+              <div class="temp-box">
+                <p id="temperature">--°C</p>
+                <p id="weatherDesc">---</p>
+              </div>
+            </div>
+
+            <div class="weather-extra">
+              <span id="highTemp">H: --°C</span>
+              <span id="lowTemp">L: --°C</span>
+            </div>
+
+            <div class="weather-stats">
+              <div class="stat-row">
+                <span>💧 Humidity</span>
+                <span id="humidity">--%</span>
+              </div>
+
+              <div class="stat-row">
+                <span>🌬 Wind</span>
+                <span id="windSpeed">-- km/h</span>
+              </div>
+            </div>
+          </div>
           <div class="card">Quote</div>
         </section>
 
@@ -79,7 +126,38 @@
 
             <button id="openNoteModal">+ Add Note</button>
           </div>
-          <div class="card big">Weather Details</div>
+          <div class="card big weather-detail-card">
+            <h3>🌤 Weather Details</h3>
+
+            <div class="detail-list">
+              <div class="detail-row">
+                <span>Feels like</span>
+                <span id="feelsLike">--°C</span>
+              </div>
+
+              <div class="detail-row">
+                <span>Humidity</span>
+                <span id="detailHumidity">--%</span>
+              </div>
+
+              <div class="detail-row">
+                <span>Wind</span>
+                <span id="detailWind">-- km/h</span>
+              </div>
+
+              <div class="detail-row">
+                <span>Visibility</span>
+                <span id="visibility">-- km</span>
+              </div>
+
+              <div class="detail-row">
+                <span>Pressure</span>
+                <span id="pressure">-- hPa</span>
+              </div>
+            </div>
+
+            <div class="hourly-box" id="hourlyForecast"></div>
+          </div>
         </section>
       </main>
     </div>
@@ -97,6 +175,7 @@
         </div>
       </div>
     </div>
+    <script src="config.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
